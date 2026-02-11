@@ -4,7 +4,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>secretFile</title>
+ <title>SecretFile</title>
  <style>
   body{
    background-color: #838dfc;
@@ -22,9 +22,11 @@
   }
   h1{
    color:#F13363;
-     font-family: 'Romantic Script', 'Brush Script MT', cursive;
-     font-size: 3rem;
-     pointer-events: none;
+   font-family: 'Romantic Script', 'Brush Script MT', cursive;
+   font-size: 3rem;
+   pointer-events: none;
+   word-wrap: break-word;
+   padding: 0 10px;
   }
   #yes{
    background-color: #68B31B;
@@ -46,10 +48,14 @@
    border-radius: 5px;
    font-family: 'Nugie Romantic', cursive;
    font-size: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(60px);
-    transition: left 0.2s ease, top 0.2s ease;
+   position: absolute;
+   left: 50%;
+   transform: translateX(60px);
+   transition: left 0.2s ease, top 0.2s ease;
+   max-width: 200px;
+   white-space: normal;
+   word-wrap: break-word;
+   text-align: center;
   
   }
   #happy{
@@ -103,11 +109,18 @@
   function moveNo(){
    const containerRect = container.getBoundingClientRect()
    const noRect = no.getBoundingClientRect()
-   const maxLeft = containerRect.width - noRect.width
-   const maxTop = containerRect.height - noRect.height
+   
+   // Define margins to keep the button away from edges
+   const marginX = 20
+   const marginY = 20
+   
+   const minLeft = marginX
+   const maxLeft = containerRect.width - noRect.width - marginX
+   const minTop = marginY
+   const maxTop = containerRect.height - noRect.height - marginY
 
-   const nextLeft = Math.max(0, Math.floor(Math.random() * maxLeft))
-   const nextTop = Math.max(0, Math.floor(Math.random() * maxTop))
+   const nextLeft = Math.floor(Math.random() * (maxLeft - minLeft) + minLeft)
+   const nextTop = Math.floor(Math.random() * (maxTop - minTop) + minTop)
 
    no.style.left = nextLeft + 'px'
    no.style.top = nextTop + 'px'
@@ -180,4 +193,3 @@
 </body>
 
 </html>
-
